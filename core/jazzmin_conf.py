@@ -1,8 +1,8 @@
 JAZZMIN_SETTINGS = {
     "site_title": "Xolodilnik Admin",
     "site_header": "Xolodilnik",
-    "site_logo": "images/bg_1.jpg",
-    "login_logo": "images/bg_1.jpg",
+    "site_logo": "images/person_.jpg",
+    "login_logo": "images/person_.jpg",
     "site_logo_classes": "img-circle",
     "site_icon": "apple.jpg",
     "welcome_sign": "Welcome to the Xolodilnik Admin",

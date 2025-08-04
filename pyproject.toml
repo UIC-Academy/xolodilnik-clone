@@ -30,9 +30,9 @@ lint.select = ["E", "F", "I", "N", "UP", "B", "C90", "RUF"]
 lint.ignore = [
     "E501",     # line too long
     "RUF001",   # ambiguous unicode character in code
-    "RUF002",   # ambiguous unicode character in docstring\
+    "RUF002",   # ambiguous unicode character in docstring
     "RUF012",
-]  
+]
 
 # Paths to exclude
 exclude = ["migrations", "__pycache__", ".venv"]

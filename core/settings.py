@@ -36,7 +36,7 @@ DJANGO_APPS = [
 
 EXTERNAL_APPS = ["daphne", "jazzmin"]
 
-LOCAL_APPS = ["users", "common"]
+LOCAL_APPS = ["users", "common", "products"]
 
 INSTALLED_APPS = EXTERNAL_APPS + LOCAL_APPS + DJANGO_APPS
 
