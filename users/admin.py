@@ -21,3 +21,51 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ["is_active", "is_staff", "is_superuser"]
     search_fields = ["email", "first_name", "last_name"]
     ordering = ["id"]
+
+    fieldsets = (
+        (
+            None,
+            {
+                "fields": (
+                    "email",
+                    "password",
+                )
+            },
+        ),
+        (
+            "Personal info",
+            {
+                "fields": (
+                    "first_name",
+                    "last_name",
+                    "phone_number",
+                )
+            },
+        ),
+        (
+            "Permissions",
+            {
+                "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                    "groups",
+                    "user_permissions"
+                )
+            },
+        )
+    )
+
+    add_fieldsets = (
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": (
+                    "email",
+                    "password1",
+                    "password2",
+                ),
+            },
+        ),
+    )
