@@ -28,3 +28,8 @@ class RegisterForm(forms.Form):
         password = self.cleaned_data["password"]
         user = User.objects._create_user(email=email, password=password)
         return user
+    
+
+class LoginForm(forms.Form):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}), label="Email")
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label="Password")

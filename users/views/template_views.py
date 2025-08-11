@@ -1,16 +1,15 @@
-from django.views.generic import TemplateView, FormView
-from django.http import HttpResponseBadRequest
-from django.contrib import messages
-from django.shortcuts import redirect
+from django.views.generic import FormView, View
+from django.http import JsonResponse
+from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 
-from users.forms import RegisterForm
+from users.forms import RegisterForm, LoginForm
 
 
 class RegisterUserView(FormView):
     template_name = "auth/register.html"
     form_class = RegisterForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('login-template')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -18,12 +17,39 @@ class RegisterUserView(FormView):
 
         return context
     
-    def form_valid(self, form):
-        user = form.save()
-        messages.success(self.request, "Registration successful!")
-        return super().form_valid(form)
+
+class LoginUserView(FormView):
+    template_name = "auth/login.html"
+    form_class = LoginForm
+    success_url = reverse_lazy('home-template')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = LoginForm()
+
+        return context
     
-    def form_invalid(self, form):
-        # Add this for debugging
-        print("Form errors:", form.errors)
-        return super().form_invalid(form)
+    def post(self, request, *args, **kwargs):
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        if not email or not password:
+            return JsonResponse(
+                {"error": "Email and password are required"},
+                status=400,
+            )
+
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            login(request, user)
+            return JsonResponse({"message": "Login successful"})
+        else:
+            return JsonResponse(
+                {"error": "Invalid credentials"}, status=401
+            )
+        
+
+class LogoutUserView(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return JsonResponse({"message": "Logout successful"})
