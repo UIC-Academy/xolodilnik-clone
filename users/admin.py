@@ -50,10 +50,10 @@ class UserAdmin(BaseUserAdmin):
                     "is_staff",
                     "is_superuser",
                     "groups",
-                    "user_permissions"
+                    "user_permissions",
                 )
             },
-        )
+        ),
     )
 
     add_fieldsets = (

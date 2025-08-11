@@ -34,7 +34,13 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-EXTERNAL_APPS = ["daphne", "jazzmin"]
+EXTERNAL_APPS = [
+    "daphne",
+    "jazzmin",
+    "rest_framework",
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
+]
 
 LOCAL_APPS = ["users", "common", "products"]
 
@@ -131,3 +137,18 @@ MEDIA_ROOT = "media"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# REST FRAMEWORK settings
+
+REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Xolodilnik API",
+    "DESCRIPTION": "Xolodilnik Clone",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SWAGGER_UI_DIST": "SIDECAR",  # shorthand to use the sidecar instead
+    "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
+    "REDOC_DIST": "SIDECAR",
+}

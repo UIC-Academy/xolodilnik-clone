@@ -1,9 +1,13 @@
-from .template_views import RegisterUserView, LoginUserView, LogoutUserView, ProfileUpdateView
-
+from .template_views import (
+    LoginUserView,
+    LogoutUserView,
+    ProfileUpdateView,
+    RegisterUserView,
+)
 
 __all__ = [
-    "RegisterUserView",
     "LoginUserView",
     "LogoutUserView",
     "ProfileUpdateView",
+    "RegisterUserView",
 ]

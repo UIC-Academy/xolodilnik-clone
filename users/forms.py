@@ -5,10 +5,17 @@ User = get_user_model()
 
 
 class RegisterForm(forms.Form):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}), label="Email")
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label="Password")
-    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label="Confirm Password")
-    
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={"class": "form-control"}), label="Email"
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={"class": "form-control"}), label="Password"
+    )
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={"class": "form-control"}),
+        label="Confirm Password",
+    )
+
     def clean(self):
         cleaned_data = super().clean()
         email = cleaned_data.get("email")
@@ -20,7 +27,7 @@ class RegisterForm(forms.Form):
 
         if password and confirm_password and password != confirm_password:
             self.add_error("confirm_password", "Passwords do not match")
-        
+
         return cleaned_data
 
     def save(self):
@@ -28,11 +35,15 @@ class RegisterForm(forms.Form):
         password = self.cleaned_data["password"]
         user = User.objects._create_user(email=email, password=password)
         return user
-    
+
 
 class LoginForm(forms.Form):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}), label="Email")
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), label="Password")
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={"class": "form-control"}), label="Email"
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={"class": "form-control"}), label="Password"
+    )
 
     def clean(self):
         cleaned_data = super().clean()
@@ -41,9 +52,9 @@ class LoginForm(forms.Form):
 
         if email and password and not User.objects.filter(email=email).exists():
             self.add_error("email", "User does not exist")
-        
+
         return cleaned_data
-    
+
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
