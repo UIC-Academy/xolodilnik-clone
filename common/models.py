@@ -7,3 +7,11 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+class Sponsor(BaseModel):
+    name = models.CharField(max_length=255)
+    logo = models.ImageField(upload_to="sponsors")
+
+    def __str__(self):
+        return self.name

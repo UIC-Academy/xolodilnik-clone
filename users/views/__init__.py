@@ -1,3 +1,10 @@
+from .profession import (
+    ProfessionCreateAPIView,
+    ProfessionDestroyAPIView,
+    ProfessionListAPIView,
+    ProfessionRetrieveAPIView,
+    ProfessionUpdateAPIView,
+)
 from .template_views import (
     LoginUserView,
     LogoutUserView,
@@ -10,6 +17,12 @@ from .user_list import UserListAPIView
 __all__ = [
     "LoginUserView",
     "LogoutUserView",
+    "ProfessionCreateAPIView",
+    "ProfessionDestroyAPIView",
+    "ProfessionListAPIView",
+    "ProfessionListAPIView",
+    "ProfessionRetrieveAPIView",
+    "ProfessionUpdateAPIView",
     "ProfileUpdateView",
     "RegisterUserView",
     "UserDetailAPIView",
