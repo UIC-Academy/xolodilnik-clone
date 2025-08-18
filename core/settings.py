@@ -43,7 +43,7 @@ EXTERNAL_APPS = [
     "drf_spectacular_sidecar",
 ]
 
-LOCAL_APPS = ["users", "common", "products"]
+LOCAL_APPS = ["users", "common", "products", "blog", "payments"]
 
 INSTALLED_APPS = EXTERNAL_APPS + LOCAL_APPS + DJANGO_APPS
 

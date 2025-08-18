@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class BaseModel(models.Model):
@@ -15,3 +16,7 @@ class Sponsor(BaseModel):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = _("Sponsor")
+        verbose_name_plural = _("Sponsors")

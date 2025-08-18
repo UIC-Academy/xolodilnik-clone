@@ -47,11 +47,25 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
 class Profession(BaseModel):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _("Profession")
+        verbose_name_plural = _("Professions")
+
 
 class Cart(BaseModel):
     user = models.ForeignKey(
         "users.User", on_delete=models.CASCADE, related_name="cart"
     )
+
+    def __str__(self):
+        return f"{self.user}"
+
+    class Meta:
+        verbose_name = _("Cart")
+        verbose_name_plural = _("Carts")
 
 
 class CartItem(BaseModel):
@@ -63,6 +77,13 @@ class CartItem(BaseModel):
     )
     quantity = models.PositiveIntegerField(default=1)
 
+    def __str__(self):
+        return f"{self.product} - {self.quantity}"
+
+    class Meta:
+        verbose_name = _("Cart Item")
+        verbose_name_plural = _("Cart Items")
+
 
 class UserFavorites(BaseModel):
     user = models.ForeignKey("users.User", on_delete=models.CASCADE)
@@ -73,9 +94,21 @@ class UserFavorites(BaseModel):
     def __str__(self):
         return f"{self.user} - {self.product_variant}"
 
+    class Meta:
+        verbose_name = _("User Favorite")
+        verbose_name_plural = _("User Favorites")
+        unique_together = ("user", "product_variant")
+
 
 class UserFeedback(BaseModel):
     user = models.ForeignKey(
         "users.User", on_delete=models.CASCADE, related_name="feedbacks"
     )
     message = models.CharField(max_length=500)
+
+    def __str__(self):
+        return f"{self.user} - {self.message}"
+
+    class Meta:
+        verbose_name = _("User Feedback")
+        verbose_name_plural = _("User Feedbacks")
