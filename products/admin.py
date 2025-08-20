@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from products.models import Product, ProductVariant, ProductCategory
+from products.models import Product, ProductCategory, ProductVariant
 
 
 @admin.register(Product)
@@ -14,11 +14,20 @@ class ProductAdmin(admin.ModelAdmin):
 class ProductCategoryAdmin(admin.ModelAdmin):
     list_display = ["id", "name", "is_active", "created_at", "updated_at"]
     list_display_links = ["id", "name"]
-    search_fields = ["name"]    
+    search_fields = ["name"]
 
 
 @admin.register(ProductVariant)
 class ProductVariantAdmin(admin.ModelAdmin):
-    list_display = ["id", "product", "name", "color", "size", "price", "created_at", "updated_at"]
+    list_display = [
+        "id",
+        "product",
+        "name",
+        "color",
+        "size",
+        "price",
+        "created_at",
+        "updated_at",
+    ]
     list_display_links = ["id", "product", "name"]
     search_fields = ["product__name", "name", "color", "size"]

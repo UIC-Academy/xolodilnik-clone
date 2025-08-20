@@ -16,6 +16,7 @@ urlpatterns = [
     path("", include("common.urls")),
     path("users/", include("users.urls")),
     path("admin/", admin.site.urls),
+    path("i18n/", include("django.conf.urls.i18n")),
     # JWT Auth
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
@@ -32,3 +33,8 @@ urlpatterns = [
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if "rosetta" in settings.INSTALLED_APPS:
+    urlpatterns += [
+        path("rosetta/", include("rosetta.urls")),
+    ]
