@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
 
 User = get_user_model()
 
@@ -23,7 +24,7 @@ class RegisterForm(forms.Form):
         confirm_password = cleaned_data.get("confirm_password")
 
         if email and User.objects.filter(email=email).exists():
-            self.add_error("email", "Email already exists")
+            self.add_error("email", _("Email already exists"))
 
         if password and confirm_password and password != confirm_password:
             self.add_error("confirm_password", "Passwords do not match")

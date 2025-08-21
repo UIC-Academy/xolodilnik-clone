@@ -1,4 +1,5 @@
 from django.contrib import admin
+from modeltranslation.admin import TranslationAdmin
 
 from blog.models import BlogCategory, BlogPost, Comment, Tag
 
@@ -22,7 +23,7 @@ class BlogCategoryAdmin(admin.ModelAdmin):
 
 
 @admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
+class TagAdmin(TranslationAdmin):
     list_display = (
         "id",
         "name",
