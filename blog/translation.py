@@ -1,5 +1,6 @@
-from modeltranslation.translator import TranslationOptions
 from modeltranslation import translator
+from modeltranslation.translator import TranslationOptions
+
 from blog.models import BlogCategory, BlogPost, Tag
 
 

@@ -16,7 +16,8 @@ class BlogPostAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (
-            _("Main"), {
+            _("Main"),
+            {
                 "fields": (
                     "user",
                     "slug",
@@ -27,35 +28,38 @@ class BlogPostAdmin(admin.ModelAdmin):
                     "is_featured",
                     "published_at",
                 ),
-            }
+            },
         ),
         (
-            _("Uzbek"), {
+            _("Uzbek"),
+            {
                 "fields": (
                     "title_uz",
                     "content_uz",
                 ),
-            }
+            },
         ),
         (
-            _("English"), {
+            _("English"),
+            {
                 "fields": (
                     "title_en",
                     "content_en",
                 ),
-            }
+            },
         ),
         (
-            _("Russian"), {
+            _("Russian"),
+            {
                 "fields": (
                     "title_ru",
                     "content_ru",
                 ),
-            }
+            },
         ),
     )
     readonly_fields = ("slug", "published_at")
-    
+
 
 @admin.register(BlogCategory)
 class BlogCategoryAdmin(admin.ModelAdmin):

@@ -11,8 +11,12 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     phone_number = models.CharField(
         verbose_name=_("Phone Number"), max_length=20, null=True, blank=True
     )
-    first_name = models.CharField(max_length=100, null=True, blank=True, verbose_name=_("First Name"))
-    last_name = models.CharField(max_length=100, null=True, blank=True, verbose_name=_("Last Name"))
+    first_name = models.CharField(
+        max_length=100, null=True, blank=True, verbose_name=_("First Name")
+    )
+    last_name = models.CharField(
+        max_length=100, null=True, blank=True, verbose_name=_("Last Name")
+    )
     profession = models.ForeignKey(
         "users.Profession",
         on_delete=models.RESTRICT,
@@ -58,8 +62,11 @@ class Profession(BaseModel):
 
 
 class Cart(BaseModel):
-    user = models.ForeignKey(
-        "users.User", on_delete=models.CASCADE, related_name="cart", verbose_name=_("User")
+    user = models.OneToOneField(
+        "users.User",
+        on_delete=models.CASCADE,
+        related_name="cart",
+        verbose_name=_("User"),
     )
 
     def __str__(self):
@@ -72,10 +79,16 @@ class Cart(BaseModel):
 
 class CartItem(BaseModel):
     cart = models.ForeignKey(
-        "users.Cart", on_delete=models.CASCADE, related_name="cart_items", verbose_name=_("Cart")
+        "users.Cart",
+        on_delete=models.CASCADE,
+        related_name="cart_items",
+        verbose_name=_("Cart"),
     )
     product = models.ForeignKey(
-        "products.Product", on_delete=models.CASCADE, related_name="cart_items", verbose_name=_("Product")
+        "products.Product",
+        on_delete=models.CASCADE,
+        related_name="cart_items",
+        verbose_name=_("Product"),
     )
     quantity = models.PositiveIntegerField(default=1, verbose_name=_("Quantity"))
 
@@ -88,9 +101,13 @@ class CartItem(BaseModel):
 
 
 class UserFavorites(BaseModel):
-    user = models.ForeignKey("users.User", on_delete=models.CASCADE, verbose_name=_("User"))
+    user = models.ForeignKey(
+        "users.User", on_delete=models.CASCADE, verbose_name=_("User")
+    )
     product_variant = models.ForeignKey(
-        "products.ProductVariant", on_delete=models.CASCADE, verbose_name=_("Product Variant")
+        "products.ProductVariant",
+        on_delete=models.CASCADE,
+        verbose_name=_("Product Variant"),
     )
 
     def __str__(self):
@@ -104,7 +121,10 @@ class UserFavorites(BaseModel):
 
 class UserFeedback(BaseModel):
     user = models.ForeignKey(
-        "users.User", on_delete=models.CASCADE, related_name="feedbacks", verbose_name=_("User")
+        "users.User",
+        on_delete=models.CASCADE,
+        related_name="feedbacks",
+        verbose_name=_("User"),
     )
     message = models.CharField(max_length=500, verbose_name=_("Message"))
 

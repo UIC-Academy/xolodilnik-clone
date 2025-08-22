@@ -43,7 +43,8 @@ EXTERNAL_APPS = [
     "drf_spectacular",
     "drf_spectacular_sidecar",
     "rosetta",
-    "modeltranslation"
+    "modeltranslation",
+    "django_filters",
 ]
 
 LOCAL_APPS = ["users", "common", "products", "blog", "payments"]
