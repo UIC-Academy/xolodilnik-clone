@@ -15,20 +15,24 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
     path("", include("common.urls")),
     path("users/", include("users.urls")),
+    path("blog/", include("blog.urls")),
     path("admin/", admin.site.urls),
     path("i18n/", include("django.conf.urls.i18n")),
+
     # JWT Auth
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    # YOUR PATTERNS
+
+    # Downloadable Schema (YML)
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
-    # Optional UI:
+    # Docs
     path(
         "swagger/",
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
     ),
     path("redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
