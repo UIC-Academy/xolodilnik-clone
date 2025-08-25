@@ -10,6 +10,11 @@ from .category import (
     CategoryListCreateAPIView,
     CategoryRetrieveUpdateDeleteAPIView,
 )
+from .comment import (
+    PostCommentListAPIView,
+    CommentCreateAPIView,
+    CommentDeleteAPIView
+)
 
 __all__ = [
     "PostListAPIView",
@@ -19,5 +24,8 @@ __all__ = [
     "PostUpdateAPIView",
     "PostDeleteAPIView",
     "CategoryListCreateAPIView",
-    "CategoryRetrieveUpdateDeleteAPIView"
+    "CategoryRetrieveUpdateDeleteAPIView",
+    "PostCommentListAPIView",
+    "CommentCreateAPIView",
+    "CommentDeleteAPIView",
 ]
