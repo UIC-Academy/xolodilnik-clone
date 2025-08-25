@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from blog.models import Comment, BlogPost
 from blog.choices import BlogPostStatus
+from blog.models import BlogPost, Comment
 from users.models import User
 
 
@@ -45,7 +45,10 @@ class CommentListSerializer(serializers.ModelSerializer):
 
 
 class CommentCreateSerializer(serializers.ModelSerializer):
-    post = serializers.PrimaryKeyRelatedField(write_only=True, queryset=BlogPost.objects.all())
+    post = serializers.PrimaryKeyRelatedField(
+        write_only=True, queryset=BlogPost.objects.all()
+    )
+
     class Meta:
         model = Comment
         fields = ["id", "post", "text", "is_active", "created_at", "updated_at"]
@@ -57,5 +60,5 @@ class CommentCreateSerializer(serializers.ModelSerializer):
 
         if post.status == BlogPostStatus.DRAFT:
             raise serializers.ValidationError("You can't comment on a draft post.")
-        
+
         return super().save(**kwargs)

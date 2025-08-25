@@ -13,6 +13,8 @@ from users.views import (
     UserDetailAPIView,
     UserListAPIView,
     UserProfileAPIView,
+    UserRegisterAPIView,
+    EmailConfirmAPIView,
 )
 
 urlpatterns = [
@@ -41,6 +43,8 @@ urlpatterns = [
         ProfessionCreateAPIView.as_view(),
         name="profession-create",
     ),
+    path("register/", UserRegisterAPIView.as_view(), name="register"),
+    path("register/confirm/<str:token>/", EmailConfirmAPIView.as_view(), name="register-confirm"),
     # Templates
     path("template/register/", RegisterUserView.as_view(), name="register-template"),
     path("template/login/", LoginUserView.as_view(), name="login-template"),

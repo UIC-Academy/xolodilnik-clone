@@ -21,8 +21,7 @@ class UserAdmin(BaseUserAdmin):
         "first_name",
         "last_name",
         "is_active",
-        "is_staff",
-        "is_superuser",
+        "is_confirmed",
     ]
     list_display_links = ["id", "email"]
     list_filter = ["is_active", "is_staff", "is_superuser"]
@@ -56,6 +55,7 @@ class UserAdmin(BaseUserAdmin):
             {
                 "fields": (
                     "is_active",
+                    "is_confirmed",
                     "is_staff",
                     "is_superuser",
                     "groups",

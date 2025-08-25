@@ -1,10 +1,9 @@
-from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated, AllowAny
 from django_filters import rest_framework as filters
+from rest_framework import generics
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from blog.models import Comment
-from blog.serializers import CommentListSerializer, CommentCreateSerializer
-
+from blog.serializers import CommentCreateSerializer, CommentListSerializer
 
 
 class PostCommentListAPIView(generics.ListAPIView):
@@ -16,7 +15,7 @@ class PostCommentListAPIView(generics.ListAPIView):
 
     def get_queryset(self):
         return Comment.objects.filter(is_active=True, post=self.kwargs["post_id"])
-    
+
 
 class CommentCreateAPIView(generics.CreateAPIView):
     queryset = Comment.objects.filter(is_active=True)

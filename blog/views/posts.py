@@ -1,15 +1,21 @@
-from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated, AllowAny
 from django_filters import rest_framework as filters
-from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiTypes
+from rest_framework import generics
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
-from blog.models import BlogPost
 from blog.choices import BlogPostStatus
-from blog.serializers import PostListSerializer, PostDetailSerializer, PostCreateSerializer, PostUpdateSerializer, UserNestedPostSerializer
+from blog.models import BlogPost
+from blog.serializers import (
+    PostCreateSerializer,
+    PostDetailSerializer,
+    PostListSerializer,
+    PostUpdateSerializer,
+)
 
 
 class PostListAPIView(generics.ListAPIView):
-    queryset = BlogPost.objects.filter(status=BlogPostStatus.PUBLISHED).order_by("-published_at")
+    queryset = BlogPost.objects.filter(status=BlogPostStatus.PUBLISHED).order_by(
+        "-published_at"
+    )
     serializer_class = PostListSerializer
     permission_classes = [AllowAny]
     filter_backends = [filters.DjangoFilterBackend]
@@ -23,7 +29,9 @@ class MyPostsListAPIView(generics.ListAPIView):
     filterset_fields = ("category", "tags")
 
     def get_queryset(self):
-        return BlogPost.objects.filter(status=BlogPostStatus.PUBLISHED, user=self.request.user).order_by("-published_at")
+        return BlogPost.objects.filter(
+            status=BlogPostStatus.PUBLISHED, user=self.request.user
+        ).order_by("-published_at")
 
 
 class PostDetailAPIView(generics.RetrieveAPIView):
@@ -45,7 +53,9 @@ class PostUpdateAPIView(generics.UpdateAPIView):
     lookup_field = "slug"
 
     def get_queryset(self):
-        return BlogPost.objects.filter(status=BlogPostStatus.PUBLISHED, user=self.request.user)
+        return BlogPost.objects.filter(
+            status=BlogPostStatus.PUBLISHED, user=self.request.user
+        )
 
 
 class PostDeleteAPIView(generics.DestroyAPIView):
@@ -53,4 +63,6 @@ class PostDeleteAPIView(generics.DestroyAPIView):
     lookup_field = "slug"
 
     def get_queryset(self):
-        return BlogPost.objects.filter(status=BlogPostStatus.PUBLISHED, user=self.request.user)
+        return BlogPost.objects.filter(
+            status=BlogPostStatus.PUBLISHED, user=self.request.user
+        )

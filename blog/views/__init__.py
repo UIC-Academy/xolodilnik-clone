@@ -1,31 +1,27 @@
-from .posts import (
-    PostListAPIView,
-    MyPostsListAPIView,
-    PostCreateAPIView,
-    PostDetailAPIView,
-    PostUpdateAPIView,
-    PostDeleteAPIView
-)
 from .category import (
     CategoryListCreateAPIView,
     CategoryRetrieveUpdateDeleteAPIView,
 )
-from .comment import (
-    PostCommentListAPIView,
-    CommentCreateAPIView,
-    CommentDeleteAPIView
+from .comment import CommentCreateAPIView, CommentDeleteAPIView, PostCommentListAPIView
+from .posts import (
+    MyPostsListAPIView,
+    PostCreateAPIView,
+    PostDeleteAPIView,
+    PostDetailAPIView,
+    PostListAPIView,
+    PostUpdateAPIView,
 )
 
 __all__ = [
-    "PostListAPIView",
-    "MyPostsListAPIView",
-    "PostCreateAPIView",
-    "PostDetailAPIView",
-    "PostUpdateAPIView",
-    "PostDeleteAPIView",
     "CategoryListCreateAPIView",
     "CategoryRetrieveUpdateDeleteAPIView",
-    "PostCommentListAPIView",
     "CommentCreateAPIView",
     "CommentDeleteAPIView",
+    "MyPostsListAPIView",
+    "PostCommentListAPIView",
+    "PostCreateAPIView",
+    "PostDeleteAPIView",
+    "PostDetailAPIView",
+    "PostListAPIView",
+    "PostUpdateAPIView",
 ]

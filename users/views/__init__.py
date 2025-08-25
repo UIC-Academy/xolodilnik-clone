@@ -13,6 +13,7 @@ from .template_views import (
 )
 from .user_detail import UserDetailAPIView, UserProfileAPIView
 from .user_list import UserListAPIView
+from .register import UserRegisterAPIView, EmailConfirmAPIView
 
 __all__ = [
     "LoginUserView",
@@ -28,4 +29,6 @@ __all__ = [
     "UserDetailAPIView",
     "UserListAPIView",
     "UserProfileAPIView",
+    "UserRegisterAPIView",
+    "EmailConfirmAPIView",
 ]

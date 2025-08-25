@@ -1,5 +1,5 @@
-from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from rest_framework import serializers
 
 from blog.models import BlogPost
 
@@ -47,7 +47,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         ]
-    
+
 
 class PostCreateSerializer(serializers.ModelSerializer):
     class Meta:
